@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #020617;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Animated Background */
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(circle, rgba(0,255,255,0.15) 0%, transparent 40%);
+  animation: move 10s linear infinite;
+  z-index: -1;
+}
+
+@keyframes move {
+  0% {
+    transform: translate(-10%, -10%);
+  }
+
+  50% {
+    transform: translate(-20%, -15%);
+  }
+
+  100% {
+    transform: translate(-10%, -10%);
+  }
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.editor-card {
+  width: 100%;
+  max-width: 1000px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(0,255,255,0.2);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 25px;
+  box-shadow:
+    0 0 30px rgba(0,255,255,0.15),
+    inset 0 0 20px rgba(0,255,255,0.05);
+}
+
+.logo {
+  text-align: center;
+  color: aqua;
+  margin-bottom: 25px;
+  letter-spacing: 4px;
+  text-shadow: 0 0 15px aqua;
+}
+
+/* Toolbar */
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.toolbar button {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,255,255,0.2);
+  background: rgba(15, 23, 42, 0.9);
+  color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.toolbar button:hover {
+  transform: translateY(-3px);
+  background: aqua;
+  color: black;
+  box-shadow: 0 0 15px aqua;
+}
+
+.toolbar .active {
+  background: aqua;
+  color: black;
+  box-shadow: 0 0 20px aqua;
+}
+
+/* Editor */
+
+.editor {
+  background: rgba(2, 6, 23, 0.9);
+  border-radius: 18px;
+  border: 1px solid rgba(0,255,255,0.15);
+  min-height: 500px;
+  padding: 25px;
+  color: white;
+}
+
+.ProseMirror {
+  outline: none;
+  min-height: 450px;
+  line-height: 1.7;
+}
+
+.ProseMirror h1 {
+  color: aqua;
+  margin-bottom: 20px;
+}
+
+.ProseMirror p {
+  margin-bottom: 16px;
+}
+
+.ProseMirror img {
+  width: 100%;
+  border-radius: 16px;
+  margin: 20px 0;
+  border: 2px solid aqua;
+  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+}
+
+.ProseMirror mark {
+  background: aqua;
+  color: black;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: aqua;
+  border-radius: 10px;
+}

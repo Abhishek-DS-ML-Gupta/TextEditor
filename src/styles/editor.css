@@ -1,0 +1,592 @@
+/* ===== MODERN UI THEME - DARK/LIGHT MODES ===== */
+/* A cyberpunk-inspired editor theme with glass morphism effects */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+/* ===== APP LAYOUT ===== */
+.app {
+  min-height: 100vh;
+  padding: 30px;
+  transition: background-color 0.4s ease, color 0.3s ease;
+}
+
+/* ===== THEME: DARK MODE (CYBER DARK) ===== */
+.dark {
+  background: linear-gradient(135deg, #020617 0%, #0a0f2a 100%);
+  color: #e2e8f0;
+}
+
+/* ===== THEME: LIGHT MODE (AURORA LIGHT) ===== */
+.light {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  color: #0f172a;
+}
+
+/* ===== EDITOR CONTAINER - GLASS CARD ===== */
+.editor-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 28px;
+  border-radius: 32px;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 255, 255, 0.1) inset;
+  transition: all 0.3s ease;
+}
+
+.light .editor-container {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 180, 180, 0.3);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+  margin-bottom: 8px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0ff, #0fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+}
+
+.light .logo {
+  background: linear-gradient(135deg, #0a7e7e, #0c6b6b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== THEME BUTTON - MODERN ===== */
+.theme-btn {
+  border: none;
+  background: linear-gradient(135deg, #0ff, #0cc);
+  color: #0a0f2a;
+  padding: 10px 22px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 255, 255, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.theme-btn:hover {
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.4);
+}
+
+.light .theme-btn {
+  background: linear-gradient(135deg, #0891b2, #06b6d4);
+  color: white;
+  box-shadow: 0 2px 10px rgba(8, 145, 178, 0.3);
+}
+
+/* ===== TOOLBAR - GLASS BUTTONS ===== */
+.toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 28px 0 24px;
+  padding: 8px 0;
+}
+
+.toolbar button {
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(4px);
+  color: #0ff;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toolbar button:hover {
+  background: #0ff;
+  color: #020617;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.5);
+  border-color: transparent;
+}
+
+.light .toolbar button {
+  background: rgba(255, 255, 255, 0.7);
+  color: #0891b2;
+  border: 1px solid rgba(8, 145, 178, 0.3);
+}
+
+.light .toolbar button:hover {
+  background: #0891b2;
+  color: white;
+  box-shadow: 0 8px 20px rgba(8, 145, 178, 0.4);
+}
+
+/* ===== EDITOR WRAPPER & CONTENT ===== */
+.editor-wrapper {
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.editor {
+  min-height: 600px;
+  padding: 32px;
+  background: rgba(2, 6, 23, 0.7);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 24px;
+  transition: all 0.3s;
+}
+
+.light .editor {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 180, 180, 0.25);
+}
+
+.ProseMirror {
+  min-height: 550px;
+  outline: none;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* ===== TYPOGRAPHY ===== */
+.ProseMirror h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #0ff, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+.ProseMirror h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #0ff;
+  margin-bottom: 20px;
+  border-left: 4px solid #0ff;
+  padding-left: 16px;
+}
+
+.ProseMirror h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #7dd3fc;
+  margin-bottom: 16px;
+}
+
+.light .ProseMirror h1 {
+  background: linear-gradient(135deg, #0891b2, #0e7e8a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.light .ProseMirror h2 {
+  color: #0f766e;
+  border-left-color: #0d9488;
+}
+
+.light .ProseMirror h3 {
+  color: #2c7a7b;
+}
+
+.ProseMirror p {
+  margin-bottom: 18px;
+  line-height: 1.7;
+}
+
+/* ===== IMAGES ===== */
+.ProseMirror img {
+  max-width: 100%;
+  border-radius: 20px;
+  margin: 24px 0;
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  box-shadow: 0 10px 30px -8px rgba(0, 255, 255, 0.3);
+  transition: transform 0.2s;
+}
+
+.ProseMirror img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 20px 35px -12px rgba(0, 255, 255, 0.4);
+}
+
+/* ===== BLOCKQUOTE ===== */
+.ProseMirror blockquote {
+  border-left: 4px solid #0ff;
+  padding-left: 24px;
+  margin: 24px 0;
+  font-style: italic;
+  color: #cbd5e1;
+  background: rgba(0, 255, 255, 0.05);
+  border-radius: 0 16px 16px 0;
+  padding: 16px 24px;
+}
+
+.light .ProseMirror blockquote {
+  color: #334155;
+  background: rgba(13, 148, 136, 0.05);
+  border-left-color: #0d9488;
+}
+
+/* ===== CODE BLOCKS ===== */
+.ProseMirror pre {
+  background: #010514;
+  color: #0ff;
+  padding: 20px;
+  border-radius: 20px;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  margin: 20px 0;
+}
+
+.ProseMirror code {
+  background: rgba(0, 255, 255, 0.12);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-family: monospace;
+  font-size: 0.9em;
+  color: #0ff;
+}
+
+.light .ProseMirror pre {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+}
+
+.light .ProseMirror code {
+  background: #e2e8f0;
+  color: #0f766e;
+}
+
+/* ===== LISTS ===== */
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 28px;
+  margin-bottom: 20px;
+}
+
+.ProseMirror li {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+/* ===== HIGHLIGHT (MARK) ===== */
+.ProseMirror mark {
+  background: linear-gradient(120deg, rgba(0, 255, 255, 0.4), rgba(0, 200, 200, 0.3));
+  color: #0a0f2a;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.light .ProseMirror mark {
+  background: linear-gradient(120deg, #fde047, #fef08a);
+  color: #422006;
+}
+
+/* ===== TASK LIST ===== */
+.ProseMirror ul[data-type="taskList"] {
+  list-style: none;
+  padding-left: 8px;
+}
+
+.ProseMirror ul[data-type="taskList"] li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.ProseMirror ul[data-type="taskList"] li > label {
+  margin-right: 8px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  margin-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #7e8aa8;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.light .footer {
+  color: #5b6e8c;
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0ff;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+}
+
+/* ===== BUBBLE MENU (CYBER GLASS) ===== */
+.bubble-menu {
+  display: flex;
+  gap: 8px;
+  background: rgba(2, 6, 23, 0.96);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  border-radius: 60px;
+  padding: 8px 12px;
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.bubble-menu button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 40px;
+  background: rgba(0, 255, 255, 0.1);
+  color: #0ff;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.bubble-menu button:hover,
+.bubble-menu button.is-active {
+  background: #0ff;
+  color: #020617;
+  box-shadow: 0 0 18px #0ff;
+  transform: scale(1.05);
+}
+
+.light .bubble-menu {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #0891b2;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.light .bubble-menu button {
+  background: #e0f2fe;
+  color: #0891b2;
+}
+
+.light .bubble-menu button:hover,
+.light .bubble-menu button.is-active {
+  background: #0891b2;
+  color: white;
+  box-shadow: 0 0 12px #0891b2;
+}
+
+/* ===== FLOATING MENU (SAME STYLE) ===== */
+.floating-menu {
+  display: flex;
+  gap: 8px;
+  background: rgba(2, 6, 23, 0.96);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  border-radius: 60px;
+  padding: 8px 12px;
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5);
+}
+
+.floating-menu button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 40px;
+  background: rgba(0, 255, 255, 0.1);
+  color: #0ff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.floating-menu button:hover,
+.floating-menu button.is-active {
+  background: #0ff;
+  color: #020617;
+  box-shadow: 0 0 18px #0ff;
+}
+
+.light .floating-menu {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #0891b2;
+}
+
+.light .floating-menu button {
+  background: #e0f2fe;
+  color: #0891b2;
+}
+
+.light .floating-menu button:hover {
+  background: #0891b2;
+  color: white;
+}
+
+/* ===== TABLE STYLES ===== */
+.ProseMirror table {
+  border-collapse: collapse;
+  margin: 24px 0;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.ProseMirror table tr {
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  transition: background 0.2s;
+}
+
+.ProseMirror table tr:hover {
+  background: rgba(0, 255, 255, 0.05);
+}
+
+.ProseMirror table td,
+.ProseMirror table th {
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  padding: 14px 16px;
+  text-align: left;
+  color: #cbd5e6;
+}
+
+.ProseMirror table th {
+  background: rgba(0, 255, 255, 0.12);
+  font-weight: 700;
+  color: #0ff;
+}
+
+.light .ProseMirror table td,
+.light .ProseMirror table th {
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+
+.light .ProseMirror table th {
+  background: #e0f2fe;
+  color: #0f766e;
+}
+
+/* ===== HORIZONTAL RULE ===== */
+.ProseMirror hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #0ff, #0ff, transparent);
+  margin: 32px 0;
+}
+
+.light .ProseMirror hr {
+  background: linear-gradient(90deg, transparent, #0891b2, #0891b2, transparent);
+}
+
+/* ===== LINKS ===== */
+.ProseMirror a {
+  color: #0ff;
+  text-decoration: none;
+  border-bottom: 1px dashed #0ff;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.ProseMirror a:hover {
+  text-shadow: 0 0 10px #0ff;
+  border-bottom-style: solid;
+}
+
+.light .ProseMirror a {
+  color: #0f766e;
+  border-bottom-color: #0d9488;
+}
+
+/* ===== IFRAME (YOUTUBE ETC) ===== */
+.ProseMirror iframe {
+  border-radius: 20px;
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  margin: 24px 0;
+  max-width: 100%;
+  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== RESPONSIVE TWEAKS ===== */
+@media (max-width: 768px) {
+  .app {
+    padding: 16px;
+  }
+  .editor-container {
+    padding: 16px;
+  }
+  .editor {
+    padding: 20px;
+    min-height: 450px;
+  }
+  .ProseMirror {
+    min-height: 400px;
+  }
+  .toolbar button {
+    width: 44px;
+    height: 44px;
+  }
+  .bubble-menu,
+  .floating-menu {
+    padding: 6px 10px;
+  }
+}

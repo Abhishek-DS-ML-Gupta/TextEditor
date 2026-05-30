@@ -1,0 +1,8 @@
+version: "2"
+authtoken: YOUR_AUTH_TOKEN_HERE  # Get from https://dashboard.ngrok.com/auth
+tunnels:
+  vite:
+    proto: http
+    addr: 5173
+    inspect: true
+    bind_tls: true
